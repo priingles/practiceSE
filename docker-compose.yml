@@ -3,6 +3,7 @@ services:
 
   practice-app:
     build: .
+    command: sh -c "sleep 70 && java -jar priinglesPracticeSE-0.1.0.1-jar-with-dependencies.jar"
 
   practice-db:
     build: ./db/.
