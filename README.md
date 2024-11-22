@@ -1,3 +1,3 @@
 I'm a README file :)...
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/priingles/PracticeSE/main.yml?branch=main)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/priingles/practiceSE/main.yml?branch=master)
