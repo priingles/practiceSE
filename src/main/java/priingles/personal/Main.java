@@ -1,10 +1,8 @@
 package priingles.personal;
 
-
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 
 public class Main {
@@ -12,16 +10,39 @@ public class Main {
 
         System.out.println("just BETTER!");
 
-        MongoClient mongoClient = new MongoClient("mongo-dbserver");
-        MongoDatabase database = mongoClient.getDatabase("personal");
-        MongoCollection<Document> collection = database.getCollection("personal");
-        Document doc = new Document("name", "priingles")
-                .append("class", "software engineering")
-                .append("year", "2024")
-                .append("result", new Document("CW", 90).append("EX", 85));
-        collection.insertOne(doc);
+        try {
+            //load db driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Document myDoc = collection.find().first();
-        System.out.println(myDoc.toJson());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        Connection c = null;
+        int retry = 5;
+
+        for (int i = 0; i < retry; i++) {
+            try {
+                Thread.sleep(1000);
+                c = DriverManager.getConnection("jdbc:mysql://db:3306/employees?useSSL=false", "root", "example");
+                System.out.println("Connected!");
+                break;
+            }
+            catch (SQLException sqle) {
+                System.out.println("Failed!");
+                System.out.println(sqle.getMessage());
+            }
+            catch (InterruptedException ie) {
+                System.out.println("Failed!, Interrupted");
+            }
+        }
+        if (c != null) {
+            try {
+                c.close();
+            }
+            catch (Exception e) {
+                System.out.println("Failed to close!");
+            }
+        }
     }
 }

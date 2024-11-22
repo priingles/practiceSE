@@ -1,0 +1,10 @@
+version: '3'
+services:
+
+  practice-app:
+    build: .
+
+  practice-db:
+    build: db/.
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
