@@ -3,6 +3,8 @@ services:
 
   practice-app:
     build: .
+    depends_on:
+      - practice-db
 
   practice-db:
     build: ./db/.
