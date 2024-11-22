@@ -24,10 +24,10 @@ public class App {
 
         for (int i = 0; i < retry; i++) {
             try {
-                Thread.sleep(5000);
+                Thread.sleep(60000);
                 c = DriverManager.getConnection("jdbc:mysql://practice-db:3306/employees?useSSL=false", "root", "example");
                 System.out.println("Connected!");
-                Thread.sleep(5000);
+                Thread.sleep(10000);
                 break;
             }
             catch (SQLException sqle) {
