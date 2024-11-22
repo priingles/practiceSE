@@ -16,9 +16,9 @@ jobs:
       - name: Compile with Maven
         run: mvn clean package
       - name: build docker image
-        run: docker build -t practiceImage .
+        run: docker build -t practice-image .
       - name: run image 
-        run: docker run --name practiceContainer -d practiceImage
+        run: docker run --name practice-container -d practice-image
       - name: view logs
-        run: docker logs practiceContainer
+        run: docker logs practice-container
         
