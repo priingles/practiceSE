@@ -12,7 +12,7 @@ public class Main {
 
         System.out.println("just BETTER!");
 
-        MongoClient mongoClient = new MongoClient("localhost", 27000);
+        MongoClient mongoClient = new MongoClient("mongo-dbserver");
         MongoDatabase database = mongoClient.getDatabase("personal");
         MongoCollection<Document> collection = database.getCollection("personal");
         Document doc = new Document("name", "priingles")

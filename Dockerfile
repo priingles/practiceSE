@@ -1,5 +1,5 @@
 FROM openjdk:latest
-COPY ./target/classes/priingles /tmp/priingles
+COPY ./target/priinglesPracticeSE-1.0-SNAPSHOT-jar-with-dependencies.jar /tmp
 WORKDIR /tmp
 
-ENTRYPOINT ["java", "priingles.personal.Main"]
+ENTRYPOINT ["java", "-jar", "priinglesPracticeSE-1.0-SNAPSHOT-jar-with-dependencies.jar"]
