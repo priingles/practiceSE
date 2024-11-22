@@ -3,9 +3,10 @@ services:
 
   practice-app:
     build: .
-    command: sh -c "sleep 70 && java -jar priinglesPracticeSE-0.1.0.1-jar-with-dependencies.jar"
 
   practice-db:
     build: ./db/.
     command: --default-authentication-plugin=mysql_native_password
     restart: always
+    ports:
+      - "33060:3306"
