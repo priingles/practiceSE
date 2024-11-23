@@ -23,4 +23,4 @@ jobs:
       - name: Compile with Maven
         run: mvn clean package
       - name: run docker compose
-        run: docker compose up --build #--abort-on-container-exit
+        run: docker compose up --build --abort-on-container-exit
