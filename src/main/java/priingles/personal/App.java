@@ -1,8 +1,6 @@
 package priingles.personal;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 
 public class App {
@@ -24,7 +22,7 @@ public class App {
 
         for (int i = 0; i < retry; i++) {
             try {
-                Thread.sleep(60000);
+                Thread.sleep(70000);
                 c = DriverManager.getConnection("jdbc:mysql://practice-db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Connected!");
                 Thread.sleep(10000);
@@ -51,5 +49,41 @@ public class App {
                 System.out.println("Failed to close!");
             }
         }
+    }
+
+    public Connection getConnection() {
+        return c;
+    }
+
+    public Country getCountry(String country){
+
+        int population;
+        String name;
+        String code;
+        String continent;
+
+        try {
+            Statement statement = c.createStatement();
+            String query = "SELECT * FROM country WHERE name = '"+country+"'";
+            ResultSet rs = statement.executeQuery(query);
+
+            if(rs.next()){
+
+                Country coun = new Country();
+                coun.population = rs.getInt("Population");
+                coun.name = rs.getString("Name");
+                coun.continent = rs.getString("Continent");
+                coun.code = rs.getString("Code");
+                return coun;
+            }
+            else{
+                return null;
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to get Country");
+            throw new RuntimeException(e);
+        }
+
+
     }
 }
