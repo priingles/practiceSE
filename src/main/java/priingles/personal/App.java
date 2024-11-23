@@ -19,12 +19,12 @@ public class App {
             throw new RuntimeException(e);
         }
 
-        int retry = 5;
+        int retry = 2;
 
         for (int i = 0; i < retry; i++) {
             try {
                 Thread.sleep(70000);
-                c = DriverManager.getConnection("jdbc:mysql://practice-db:33060/world?useSSL=false", "root", "example");
+                c = DriverManager.getConnection("jdbc:mysql://practice-db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Connected!");
                 Thread.sleep(10000);
                 break;
@@ -107,8 +107,10 @@ public class App {
                 coun.name = rs.getString("Name");
                 coun.continent = rs.getString("Continent");
                 coun.code = rs.getString("Code");
-                cont.countries.add(coun);
+                countries.add(coun);
             }
+            cont.countries = countries;
+            cont.name = inContinent;
             return cont;
 
         } catch (Exception e) {

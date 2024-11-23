@@ -6,14 +6,15 @@ public class Continent {
 
     public String name;
     public ArrayList<Country> countries;
-    public int population;
-    public String continent;
-    public String code;
+
+    public void displayContinent(){
+        System.out.println("Continent: " + name);
+        int num = countries.size();
+        System.out.println("Number of countries: " + num);
+
+    }
 
     public void displayCountries() {
-
-
-
 
 
 
