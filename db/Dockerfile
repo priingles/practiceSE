@@ -4,10 +4,10 @@ FROM mysql:8.3
 WORKDIR /tmp
 
 #files copied to container working directory
-COPY .db/test_db/*.sql /tmp/test_db
-COPY .db/test_db/*.dump /tmp/test_db
+COPY test_db/*.sql /tmp
+COPY test_db/*.dump /tmp
 
-COPY ./db/test_db/employees.sql /docker-entrypoint-initdb.d
+COPY test_db/employees.sql /docker-entrypoint-initdb.d
 
 ENV MYSQL_ROOT_PASSWORD example
 
