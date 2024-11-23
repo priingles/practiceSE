@@ -1,27 +1,17 @@
 package priingles.personal;
 
-
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-
-
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("just BETTER!");
+        App a = new App();
+        a.connect();
 
-        MongoClient mongoClient = new MongoClient("mongo-dbserver");
-        MongoDatabase database = mongoClient.getDatabase("personal");
-        MongoCollection<Document> collection = database.getCollection("personal");
-        Document doc = new Document("name", "priingles")
-                .append("class", "software engineering")
-                .append("year", "2024")
-                .append("result", new Document("CW", 90).append("EX", 85));
-        collection.insertOne(doc);
+        Country nigeria = a.getCountry("Nigeria");
+        nigeria.displayCountry();
 
-        Document myDoc = collection.find().first();
-        System.out.println(myDoc.toJson());
+        Continent Asia = a.getCountryinContinent("Asia");
+        Asia.displayContinent();
+
+        a.disconnect();
     }
 }

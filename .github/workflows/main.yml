@@ -13,17 +13,8 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: network setup
-        run: |
-          docker network create --driver bridge practice-se
-          docker pull mongo
-          docker run -d --name mongo_dbserver --network practice-se mongo
       - name: Compile with Maven
         run: mvn clean package
-      - name: build docker image
-        run: docker build -t practice-image .
-      - name: run image 
-        run: docker run --name practice-container -d practice-image
-      - name: view logs
-        run: docker logs practice-container
+      - name: run docker compose
+        run: docker compose up --build --abort-on-container-exit
         
