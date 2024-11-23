@@ -1,6 +1,7 @@
 package priingles.personal;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class App {
@@ -22,8 +23,8 @@ public class App {
 
         for (int i = 0; i < retry; i++) {
             try {
-                Thread.sleep(70000);
-                c = DriverManager.getConnection("jdbc:mysql://practice-db:3306/world?useSSL=false", "root", "example");
+                Thread.sleep(5000);
+                c = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
                 System.out.println("Connected!");
                 Thread.sleep(10000);
                 break;
@@ -49,10 +50,6 @@ public class App {
                 System.out.println("Failed to close!");
             }
         }
-    }
-
-    public Connection getConnection() {
-        return c;
     }
 
     public Country getCountry(String country){
@@ -84,6 +81,40 @@ public class App {
             throw new RuntimeException(e);
         }
 
+
+    }
+
+    public Continent getCountryinContinent(String inContinent){
+
+        int population;
+        String name;
+        String code;
+        String continent;
+
+        try {
+
+            Continent cont = new Continent();
+            Statement statement = c.createStatement();
+            String query = "SELECT * FROM country WHERE continent = '"+inContinent+"'";
+            ResultSet rs = statement.executeQuery(query);
+
+            ArrayList<Country> countries = new ArrayList<>();
+
+            while(rs.next()){
+
+                Country coun = new Country();
+                coun.population = rs.getInt("Population");
+                coun.name = rs.getString("Name");
+                coun.continent = rs.getString("Continent");
+                coun.code = rs.getString("Code");
+                cont.countries.add(coun);
+            }
+            return cont;
+
+        } catch (Exception e) {
+            System.out.println("Failed to get Country");
+            throw new RuntimeException(e);
+        }
 
     }
 }

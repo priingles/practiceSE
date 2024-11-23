@@ -9,6 +9,7 @@ public class Main {
 
         Country nigeria = a.getCountry("Nigeria");
         nigeria.displayCountry();
+        Continent Asia = a.getCountryinContinent("Asia");
 
         a.disconnect();
     }
