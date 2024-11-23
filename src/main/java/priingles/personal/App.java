@@ -23,8 +23,8 @@ public class App {
 
         for (int i = 0; i < retry; i++) {
             try {
-                Thread.sleep(5000);
-                c = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "example");
+                Thread.sleep(70000);
+                c = DriverManager.getConnection("jdbc:mysql://practice-db:33060/world?useSSL=false", "root", "example");
                 System.out.println("Connected!");
                 Thread.sleep(10000);
                 break;
