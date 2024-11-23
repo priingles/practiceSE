@@ -8,6 +8,8 @@ jobs:
     steps: 
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: 'true'
       - name: set up jdk 11
         uses: actions/setup-java@v2
         with:
@@ -17,4 +19,3 @@ jobs:
         run: mvn clean package
       - name: run docker compose
         run: docker compose up --build --abort-on-container-exit
-        
