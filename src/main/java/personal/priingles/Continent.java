@@ -7,11 +7,11 @@ public class Continent {
     public String name;
     public ArrayList<Country> countries;
 
-    public void displayContinent(){
-        System.out.println("Continent: " + name);
-        int num = countries.size();
-        System.out.println("Number of countries: " + num);
+    public String[] displayContinent(){
 
+        int num = countries.size();
+        String[] cont = {"Asia", num + ""};
+        return cont;
     }
 
     public void displayCountries() {

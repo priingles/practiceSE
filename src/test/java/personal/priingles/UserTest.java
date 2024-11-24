@@ -3,7 +3,7 @@ package personal.priingles;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.jupiter.api.Test;
-import personal.entities.Usr;
+import personal.h2Entities.Usr;
 import personal.util.HibernateUtil;
 
 import static org.junit.jupiter.api.Assertions.*;

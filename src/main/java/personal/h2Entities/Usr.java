@@ -1,4 +1,4 @@
-package personal.entities;
+package personal.h2Entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
