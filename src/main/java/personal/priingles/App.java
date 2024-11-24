@@ -1,4 +1,4 @@
-package priingles.personal;
+package personal.priingles;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -71,7 +71,11 @@ public class App {
                 coun.name = rs.getString("Name");
                 coun.continent = rs.getString("Continent");
                 coun.code = rs.getString("Code");
-                return coun;
+
+                if(coun != null){
+                    return coun;
+                }else{throw new Exception();}
+
             }
             else{
                 return null;

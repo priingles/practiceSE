@@ -1,4 +1,4 @@
-package priingles.personal;
+package personal.priingles;
 
 import java.util.ArrayList;
 
