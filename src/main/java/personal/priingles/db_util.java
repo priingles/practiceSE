@@ -9,7 +9,7 @@ public class db_util {
     private Connection con = null;
 
     public static Connection getDbConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://practice-db:3306/world?useSSL=false", "root", "example");
+        return DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
     }
     public static Connection getTestConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1", "sa", "");
