@@ -1,17 +1,27 @@
 package personal.priingles;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Arrays;
+
 public class Main {
-    public static void main(String[] args) {
+    
 
-        App a = new App();
-        a.connect();
+    public static void main(String[] args) throws Exception {
+        Connection con;
+        CountryService countryService;
 
-        Country nigeria = a.getCountry("Nigeria");
-        nigeria.displayCountry();
+        con = db_util.getDbConnection();
+        countryService = new CountryService(con);
+        Country country = countryService.getCountry("Nigeria");
+        String[] a = country.displayCountry();
 
-        Continent Asia = a.getCountryinContinent("Asia");
-        Asia.displayContinent();
 
-        a.disconnect();
+
+
+        System.out.println(Arrays.toString(a));
+
+
+        con.close();
     }
 }

@@ -13,7 +13,7 @@ public class ContinentTest {
 
 
         Continent cont = new Continent();
-        cont.name = "Asia";
+        cont.name = "Nowhere";
 
         ArrayList<Country> countries = new ArrayList<>();
         int pop = 0;
@@ -30,7 +30,7 @@ public class ContinentTest {
 
         cont.countries = countries;
 
-        String[] a = {"Asia", "20"};
+        String[] a = {"Nowhere", "20"};
         String[] actual = cont.displayContinent();
         assertArrayEquals(a,actual);
     }

@@ -4,12 +4,20 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
-public class App {
+public class db_util {
 
-    private Connection c = null;
-    public void connect() {
+    private Connection con = null;
 
-        System.out.println("just BETTER!");
+    public static Connection getDbConnection() throws SQLException {
+        return DriverManager.getConnection("jdbc:mysql://practice-db:3306/world?useSSL=false", "root", "example");
+    }
+    public static Connection getTestConnection() throws SQLException {
+        return DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1", "sa", "");
+    }
+
+    public void connect(Connection connection) throws SQLException {
+
+        System.out.println("connecting...");
 
         try {
             //load db driver
@@ -23,16 +31,15 @@ public class App {
 
         for (int i = 0; i < retry; i++) {
             try {
+
                 Thread.sleep(70000);
-                c = DriverManager.getConnection("jdbc:mysql://practice-db:3306/world?useSSL=false", "root", "example");
+                //passing db url
+                this.con = connection;
                 System.out.println("Connected!");
                 Thread.sleep(10000);
                 break;
             }
-            catch (SQLException sqle) {
-                System.out.println("Failed!");
-                System.out.println(sqle.getMessage());
-            }
+
             catch (InterruptedException ie) {
                 System.out.println("Failed!, Interrupted");
             }
@@ -41,15 +48,21 @@ public class App {
     }
 
     public void disconnect() {
-        if (c != null) {
+        if (con != null) {
             try {
-                c.close();
+                con.close();
                 System.out.println("Disconnected!");
             }
             catch (Exception e) {
                 System.out.println("Failed to close!");
             }
         }
+    }
+
+    public Connection testConnection() throws SQLException {
+
+        return DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1", "sa", "");
+
     }
 
     public Country getCountry(String country){
@@ -60,7 +73,7 @@ public class App {
         String continent;
 
         try {
-            Statement statement = c.createStatement();
+            Statement statement = con.createStatement();
             String query = "SELECT * FROM country WHERE name = '"+country+"'";
             ResultSet rs = statement.executeQuery(query);
 
@@ -98,7 +111,7 @@ public class App {
         try {
 
             Continent cont = new Continent();
-            Statement statement = c.createStatement();
+            Statement statement = con.createStatement();
             String query = "SELECT * FROM country WHERE continent = '"+inContinent+"'";
             ResultSet rs = statement.executeQuery(query);
 

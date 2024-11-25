@@ -10,7 +10,7 @@ public class Continent {
     public String[] displayContinent(){
 
         int num = countries.size();
-        String[] cont = {"Asia", num + ""};
+        String[] cont = {name, num + ""};
         return cont;
     }
 
