@@ -8,43 +8,30 @@ public class db_util {
 
     private Connection con = null;
 
-    public static Connection getDbConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=true", "root", "example");
+    public Connection getDbConnection() throws SQLException, InterruptedException {
+
+        int retry2 = 7;
+        System.out.println("Connecting to database...");
+        Thread.sleep(20000);
+        for(int i = 0; i < retry2; i++){
+            Connection connection = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+
+            if (connection != null){
+                System.out.println("Connected");
+                this.con = connection;
+                break;
+            }else{
+                System.out.println("Connection Failed\n");
+                Thread.sleep(10000);}
+        }
+
+        if(this.con == null){
+            throw new SQLException("Failed to establish connection to the database");
+        }
+        return con;
     }
     public static Connection getTestConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1", "sa", "");
-    }
-
-    public void connect() throws SQLException {
-
-        System.out.println("connecting...");
-
-        try {
-            //load db driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        int retry = 2;
-
-        for (int i = 0; i < retry; i++) {
-            try {
-
-                Thread.sleep(70000);
-                //passing db url
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
-                System.out.println("Connected!");
-                Thread.sleep(10000);
-                break;
-            }
-
-            catch (InterruptedException ie) {
-                System.out.println("Failed!, Interrupted");
-            }
-        }
-
     }
 
     public void disconnect() {

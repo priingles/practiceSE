@@ -5,20 +5,23 @@ import java.sql.SQLException;
 import java.util.Arrays;
 
 public class Main {
-    
+
 
     public static void main(String[] args) throws Exception {
+//
+//        Thread.sleep(60000);
 
         CountryService countryService;
         db_util db = new db_util();
-        db.connect();
 
 
-        //Connection con = db_util.getDbConnection();
+        Connection con = db.getDbConnection();
 
 
-        /**countryService = new CountryService(con);
-        Country country = countryService.getCountry("Nigeria");
+
+
+        countryService = new CountryService(con);
+        Country country = countryService.getCountry_Name("Argentina");
         String[] a = country.displayCountry();
 
 
@@ -29,6 +32,5 @@ public class Main {
 
 
         //con.close();
-         **/
              }
 }
