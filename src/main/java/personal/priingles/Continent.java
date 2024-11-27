@@ -16,8 +16,14 @@ public class Continent {
 
     public void displayCountries() {
 
-
-
     }
+
+    /***
+    public Country[] getCountryinCont(String Code){
+
+        Country[] countriesArray = countries.toArray(new Country[countries.size()]);
+        return new Country[]{countriesArray[id]};
+    }
+     **/
 
 }

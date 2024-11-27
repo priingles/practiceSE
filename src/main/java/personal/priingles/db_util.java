@@ -9,13 +9,13 @@ public class db_util {
     private Connection con = null;
 
     public static Connection getDbConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+        return DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=true", "root", "example");
     }
     public static Connection getTestConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1", "sa", "");
     }
 
-    public void connect(Connection connection) throws SQLException {
+    public void connect() throws SQLException {
 
         System.out.println("connecting...");
 
@@ -34,7 +34,7 @@ public class db_util {
 
                 Thread.sleep(70000);
                 //passing db url
-                this.con = connection;
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Connected!");
                 Thread.sleep(10000);
                 break;

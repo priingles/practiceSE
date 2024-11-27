@@ -11,12 +11,13 @@ public class Main {
 
         CountryService countryService;
         db_util db = new db_util();
+        db.connect();
 
 
-        Connection con = db_util.getDbConnection();
-        /**
-        db.connect(con);
-        countryService = new CountryService(con);
+        //Connection con = db_util.getDbConnection();
+
+
+        /**countryService = new CountryService(con);
         Country country = countryService.getCountry("Nigeria");
         String[] a = country.displayCountry();
 
@@ -24,9 +25,10 @@ public class Main {
 
 
         System.out.println(Arrays.toString(a));
-         **/
+
 
 
         //con.close();
-    }
+         **/
+             }
 }
