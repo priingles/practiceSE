@@ -56,7 +56,6 @@ public class City {
     }
 
 
-
     // Getter and setter for country
     public String getCountry() {
         return country;

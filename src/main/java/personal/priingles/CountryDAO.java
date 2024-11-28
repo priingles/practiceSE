@@ -85,7 +85,6 @@ public class CountryDAO {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("select * from country where continent = '" + continentName + "'");
             while(rs.next()){
-                if (rs.next()) {
                     Country country = new Country();
                     country.code = rs.getString("Code");
                     country.name = rs.getString("Name");
@@ -103,7 +102,6 @@ public class CountryDAO {
                     country.capital = rs.getInt("Capital");
                     country.code2 = rs.getString("Code2");
                     this.country = country;
-                }
 
                 if(country != null){
 
