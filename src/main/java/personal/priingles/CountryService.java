@@ -11,12 +11,20 @@ public class CountryService {
         this.countryDAO = new CountryDAO(con);
     }
 
+    public ArrayList<Country> getAll() {
+        return countryDAO.country_getAll();
+    }
+
     public Country getCountry_Name(String countryName) throws Exception {
         return countryDAO.getCountrybyName(countryName);
     }
 
 
-    public ArrayList<Country> getCountry_Continent(String continentName) throws Exception {
+    public ArrayList<Country> getCountries_Continent(String continentName) throws Exception {
         return countryDAO.getCountrybyContinent(continentName);
+    }
+
+    public ArrayList<Country> getCountries_Region(String regionName) throws Exception {
+        return countryDAO.getCountrybyRegion(regionName);
     }
 }

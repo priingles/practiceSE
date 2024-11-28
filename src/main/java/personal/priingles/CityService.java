@@ -1,6 +1,7 @@
 package personal.priingles;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 public class CityService {
 
@@ -13,4 +14,10 @@ public class CityService {
     public City getCity(String countryName) throws Exception {
         return cityDAO.getCitybyName(countryName);
     }
+
+    public ArrayList<City> getAll() throws Exception {
+        return cityDAO.getAll();
+    }
+
+
 }
